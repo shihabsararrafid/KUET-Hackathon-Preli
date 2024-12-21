@@ -1,0 +1,81 @@
+
+  === Recipe: Spaghetti Carbonara ===
+  Description:A classic Italian pasta dish with eggs, cheese, pancetta, and black pepper
+  Cuisine Type: Italian
+  Preparation Time: 30 minutes
+  Difficulty Level: Not specified
+  
+  ===================================
+  
+  === Recipe: Pad Thai ===
+  Description:Stir-fried rice noodles with tofu, shrimp, peanuts, and tamarind sauce
+  Cuisine Type: Thai
+  Preparation Time: 45 minutes
+  Difficulty Level: Not specified
+  
+  ===================================
+  
+  === Recipe: French Apple Tart ===
+  Description:Buttery pastry filled with caramelized apple slices
+  Cuisine Type: French
+  Preparation Time: 90 minutes
+  Difficulty Level: Not specified
+  
+  ===================================
+  
+  === Recipe: Korean BBQ Tacos ===
+  Description:Fusion tacos filled with bulgogi beef and kimchi slaw
+  Cuisine Type: Korean-Mexican Fusion
+  Preparation Time: 40 minutes
+  Difficulty Level: Not specified
+  
+  ===================================
+  
+  === Recipe: Classic Hummus ===
+  Description:Creamy chickpea dip with tahini and olive oil
+  Cuisine Type: Middle Eastern
+  Preparation Time: 15 minutes
+  Difficulty Level: Not specified
+  
+  ===================================
+  
+  === Recipe: undefined ===
+  Description:undefined
+  Cuisine Type: Not specified
+  Preparation Time: Not specified minutes
+  Difficulty Level: Not specified
+  
+  ===================================
+  
+  === Recipe: undefined ===
+  Description:undefined
+  Cuisine Type: Not specified
+  Preparation Time: Not specified minutes
+  Difficulty Level: Not specified
+  
+  ===================================
+  
+  === Recipe: undefined ===
+  Description:undefined
+  Cuisine Type: Not specified
+  Preparation Time: Not specified minutes
+  Difficulty Level: Not specified
+  
+  ===================================
+  
+  === Recipe: undefined ===
+  Description:undefined
+  Cuisine Type: Not specified
+  Preparation Time: Not specified minutes
+  Difficulty Level: Not specified
+  
+  ===================================
+  
+  === Recipe: undefined ===
+  Description:undefined
+  Cuisine Type: Not specified
+  Preparation Time: Not specified minutes
+  Difficulty Level: Not specified
+  
+  ===================================
+  

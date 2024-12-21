@@ -31,7 +31,8 @@ export const extractTextFromImage = async (url) => {
     tessedit_char_whitelist:
       "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .,",
   });
-
-  console.log(data.text);
+  const test = data.text;
+  //   console.log(data.text);
   await worker.terminate();
+  return test;
 };

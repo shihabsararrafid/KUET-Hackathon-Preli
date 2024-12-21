@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model Ingredient {
+  id             Int       @id @default(autoincrement())
+  name           String
+  quantity       Float
+  unit           String
+  category       String?
+  expiryDate     DateTime?
+  createdAt       DateTime  @default(now())
+  lastUpdated    DateTime  @updatedAt
+  recipes        RecipeIngredient[]
+
+  @@map("ingredients")
+}
+
+model Recipe {
+  id              Int       @id @default(autoincrement())
+  name            String
+  description     String
+  history         String
+  cuisineType     String?
+  prepTime        Int?     
+  recipeImage      String    
+  createdAt       DateTime  @default(now())
+  ingredients     RecipeIngredient[]
+  steps          RecipeStep[]        
+  notes          RecipeNote[]       
+  @@map("recipes")
+}
+
+model RecipeIngredient {
+  id            Int        @id @default(autoincrement())
+  recipe        Recipe     @relation(fields: [recipeId], references: [id])
+  recipeId      Int
+  ingredient    Ingredient @relation(fields: [ingredientId], references: [id])
+  ingredientId  Int
+  quantity      Float
+  unit          String
+
+  @@unique([recipeId, ingredientId])
+  @@map("recipe_ingredients")
+}
+model RecipeStep {
+  id          Int      @id @default(autoincrement())
+  recipe      Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  recipeId    Int
+  stepNumber  Int
+  instruction String   
+  timeInMinutes Int?
+  imageUrl    String?  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([recipeId, stepNumber])
+  @@map("recipe_steps")
+}
+
+model RecipeNote {
+  id        Int      @id @default(autoincrement())
+  recipe    Recipe   @relation(fields: [recipeId], references: [id], onDelete: Cascade)
+  recipeId  Int
+  note      String   @db.Text
+  type      String   @db.VarChar(50) // e.g., "tip", "warning", "variation"
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("recipe_notes")
+}
+
+

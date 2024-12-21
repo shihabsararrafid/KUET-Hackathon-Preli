@@ -16,7 +16,7 @@ const prisma = new PrismaClient();
 const upload = multer({ storage: multer.memoryStorage() });
 
 app.use(express.json());
-const genAI = new GoogleGenerativeAI("AIzaSyBESNbqOydAQWMvTdhZ0sdFj9ZOfTyIiSE");
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
 async function parseRecipeText(text) {
   try {
     const model = genAI.getGenerativeModel({ model: "gemini-pro" });

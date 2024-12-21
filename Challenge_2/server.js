@@ -3,6 +3,8 @@ import { PrismaClient } from "@prisma/client";
 import dotenv from "dotenv";
 import express from "express";
 import multer from "multer";
+import { saveImage } from "./lib/upload.js";
+import path from "path";
 
 dotenv.config();
 
@@ -109,7 +111,40 @@ app.get("/api/ingredients", async (req, res) => {
     res.status(400).json({ error: "Failed to fetch ingredients" });
   }
 });
+app.post("/api/add_recipe", upload.single("image"), async (req, res) => {
+  try {
+    let recipe;
+    if (req.file) {
+      // Extract text from image
+      const image = await saveImage(req.file);
 
+      recipe = await prisma.recipe.create({
+        data: {
+          recipeImage: image,
+        },
+      });
+    } else {
+      const { name, description, history, cuisineType, prepTime } = req.body;
+      recipe = await prisma.recipe.create({
+        data: {
+          name,
+          description,
+          history,
+          cuisineType,
+          prepTime: prepTime ? parseInt(prepTime) : undefined,
+        },
+      });
+    }
+    // console.log(recipe);
+    // const recipe = normalizeRecipeText(recipeText);
+    // await saveRecipeToFile(recipe); // Or saveRecipeToDB(recipe);
+    res.status(200).json({ message: "Recipe added successfully!", recipe });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to add recipe." });
+  }
+});
+app.use("/image", express.static(path.resolve("data/image")));
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;

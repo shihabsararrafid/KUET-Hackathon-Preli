@@ -28,12 +28,12 @@ model Ingredient {
 
 model Recipe {
   id              Int       @id @default(autoincrement())
-  name            String
-  description     String
-  history         String
+  name            String?
+  description     String?
+  history         String?
   cuisineType     String?
   prepTime        Int?     
-  recipeImage      String    
+  recipeImage      String?    
   createdAt       DateTime  @default(now())
   ingredients     RecipeIngredient[]
   steps          RecipeStep[]        

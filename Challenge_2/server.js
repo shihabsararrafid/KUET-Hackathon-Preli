@@ -5,6 +5,7 @@ import express from "express";
 import multer from "multer";
 import { saveImage } from "./lib/upload.js";
 import path from "path";
+import { extractTextFromImage } from "./lib/extractTextFromImage.js";
 
 dotenv.config();
 
@@ -142,6 +143,23 @@ app.post("/api/add_recipe", upload.single("image"), async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to add recipe." });
+  }
+});
+app.get("/api/recipe_retrieval", async (req, res, next) => {
+  try {
+    const recipe = await prisma.recipe.findUnique({
+      where: {
+        id: 12,
+      },
+    });
+    if (recipe.recipeImage) {
+      await extractTextFromImage(recipe.recipeImage);
+    }
+
+    res.status(200).json({ message: "Recipe added successfully!", recipe });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed retrieve." });
   }
 });
 app.use("/image", express.static(path.resolve("data/image")));
